@@ -9,10 +9,10 @@ One Liner - DO NOT run without reading code first!
 --------------------------------------------------
 Ubuntu
 
-    wget https://raw.githubusercontent.com/grctest/grcnode/master/BackEnd/Nodes/AutoNode/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
 Debian  
 
-    wget https://raw.githubusercontent.com/NeuralMiner/grcnode/master/BackEnd/Nodes/AutoNode/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
 
 Notes
 -----
