@@ -12,7 +12,7 @@ Ubuntu
     wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
 Debian  
 
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
 
 Notes
 -----
