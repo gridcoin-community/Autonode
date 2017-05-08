@@ -10,7 +10,7 @@ cd ~
 # sysctl -p
 
 echo "########### Adding Google DNS"
-echo "dns-nameservers 8.8.8.8 8.8.4.4" >> /etc/network/interfaces
+sed -i '$a\        dns-nameservers 8.8.8.8 8.8.4.4' /etc/network/interfaces
 
 echo "########### Adding Spideroak source"
 echo "38.121.104.79 spideroak.com" >> /etc/hosts
@@ -51,8 +51,9 @@ echo "addnode=45.76.142.167" >> $config
 echo "addnode=45.76.173.179" >> $config
 echo "addnode=45.76.182.98" >> $config
 echo "addnode=104.244.75.96" >> $config
+echo "addnode=139.162.91.223" >> $config
 echo "addnode=139.162.171.24" >> $config
-echo "addnode=grc.z9.de" >> $config
+echo "addnode=grcnode.tahvok.com" >> $config
 echo "addnode=grcnode01.centralus.cloudapp.azure.com" >> $config
 echo "addnode=grcnode02.eastus.cloudapp.azure.com" >> $config
 echo "addnode=grcnode03.eastus.cloudapp.azure.com" >> $config
@@ -68,6 +69,8 @@ echo "addnode=oregon.gridcoin.stablenode.net" >> $config
 echo "addnode=quebec.gridcoin.co.il" >> $config
 echo "addnode=seattle.grcnode.deluxe-host.net" >> $config
 echo "addnode=seattle2.gridcoin.stablenode.net" >> $config
+echo "addnode=toronto01.gridcoin.ifoggz-network.xyz" >> $config
+echo "addnode=vancouver01.gridcoin.ifoggz-network.xyz" >> $config
 randUser=`< /dev/random tr -dc A-Za-z0-9 | head -c64`
 randPass=`< /dev/random tr -dc A-Za-z0-9 | head -c64`
 echo "rpcuser=$randUser" >> $config
