@@ -12,29 +12,29 @@ Ubuntu
     wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
 Debian  
 
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
 
 Notes
 -----
 
 This script installs:
 - NTP/chrony
-- unzip
+- git (autoremoved after completion)
+- make (autoremoved after completion)
+- gcc (autoremoved after completion)
+- unzip (autoremoved after completion)
 - apt-utils
 - software-properties-common
-- git
-- make
-- gcc
 - sudo
-- gridcoinresearchd (from ppa:gridcoin/gridcoin-daily, not manually compiled from source)
+- gridcoinresearchd (from ppa:gridcoin/gridcoin-stable, not manually compiled from source)
 - libminiupnpc8 (Debian)
 
 This script:
-- Creates a 'gridcoin' user to run gridcoinresearchd under (better than running client as root)
-- Downloads official bootstrap instead of syncing from 0 (edit script if you don't want it to do this)
-- Disables IPv6 (edit script if you require IPv6)
+- Includes an option to disable IPv6 (uncomment first section if you require only IPv4)
+- Creates a 'gridcoin' user to run gridcoinresearchd under (safer than running client as root)
+- Downloads official bootstrap instead of syncing from block 0 (edit script if you don't want it to do this)
 - Adds Google DNS
-- Deletes sources.list, and ensures hosts are reachable for updates
+- Ensures Spideroak is reachable for updates
 - Configures NTP/chrony
+- Cleans up after itself by removing packages after install (git, gcc, make, unzip)
 - Autostart on boot (Debian)
-- Attempts to clean up after itself by removing packages after install (bootstrap, git, gcc, unzip)

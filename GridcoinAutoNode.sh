@@ -1,51 +1,38 @@
 #!/bin/bash
 echo "########### The server will reboot when the script is complete"
-echo "########### Changing to home dir"
+echo "########### Changing to /home/ dir"
 cd ~
- 
-echo "########### Adding Google DNS"
-echo "dns-nameservers 8.8.8.8 8.8.4.4" >> /etc/network/interface
- 
-echo "########### Installing necessary packages"
-apt-get -y dist-upgrade
-apt-get -y update && apt-get -y upgrade; apt-get install -y --no-install-recommends apt-utils && apt-get -y install dialog && apt-get -y install software-properties-common && apt-get -y install sudo && apt-get -y install git && apt-get -y install gcc && apt-get -y install make && apt-get -y install unzip
-add-apt-repository -y ppa:gridcoin/gridcoin-daily
-apt-get -y update && apt-get -y upgrade; apt-get -y install gridcoinresearchd
- 
+
 # echo "########### Disabling IPv6"
 # sed -i '$anet.ipv6.conf.all.disable_ipv6 = 1' /etc/sysctl.conf
 # sed -i '$anet.ipv6.conf.default.disable_ipv6 = 1' /etc/sysctl.conf
 # sed -i '$anet.ipv6.conf.lo.disable_ipv6 = 1' /etc/sysctl.conf
-# sudo sysctl -p
- 
+# sysctl -p
+
+echo "########### Adding Google DNS"
+sed -i '$a\        dns-nameservers 8.8.8.8 8.8.4.4' /etc/network/interfaces
+
+echo "########### Adding Spideroak source"
+echo "38.121.104.79 spideroak.com" >> /etc/hosts
+
+echo "########### Installing necessary packages"
+apt-get -y dist-upgrade
+apt-get -y update && apt-get -y upgrade; apt-get install -y --no-install-recommends apt-utils && apt-get -y install software-properties-common && apt-get -y install sudo && apt-get -y install git && apt-get -y install gcc && apt-get -y install make && apt-get -y install unzip
+add-apt-repository -y ppa:gridcoin/gridcoin-stable
+apt-get -y update && apt-get -y upgrade; apt-get -y install gridcoinresearchd
+
 echo "########### Creating gridcoin user"
 useradd -m gridcoin
- 
+
 echo "########### Creating gridcoinresearch.conf file"
 cd ~gridcoin
 sudo -u gridcoin mkdir .GridcoinResearch
 cd /home/gridcoin/.GridcoinResearch/
- 
-echo "########### Downloading blockchain files..."
-# Uncomment sources for faster trusted member downloads over SSL
-# Gridcoin.us: Official source
-# Google Drive (bit.ly): managed by NeuralMiner
-# SpiderOak: managed by Peppernrino
- 
-# sudo -u gridcoin wget http://download.gridcoin.us/download/downloadstake/signed/snapshot.zip
-# sudo -u gridcoin wget https://bit.ly/GRCSnapshot
-# sudo -u gridcoin wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/snapshot.zip
-# sudo unzip snapshot.zip
- 
-# Use bootstrap of blockchain vs. snapshot. Slower, but more verification. (Recommended method)
-# sudo -u gridcoin wget https://bit.ly/GRCBootstrap
+
+echo "########### Downloading and extracting bootstrap.zip"
 sudo -u gridcoin wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/bootstrap.zip
 sudo unzip bootstrap.zip
- 
-echo "########### Deleting .zip package to save space :)"
-# sudo rm ./snapshot.zip
-sudo rm ./bootstrap.zip
- 
+
 sudo chown -R gridcoin:gridcoin /home/gridcoin/.GridcoinResearch/*
 config="gridcoinresearch.conf"
 sudo -u gridcoin touch $config
@@ -85,20 +72,21 @@ echo "addnode=singapore.grcnode.co.uk" | sudo tee -a $config
 echo "addnode=toronto01.gridcoin.ifoggz-network.xzy" | sudo tee -a $config
 echo "addnode=vancouver01.gridcoin.ifoggz-network.xzy" | sudo tee -a $config
 echo "addnode=gridcoin.hopto.org" | sudo tee -a $config
+
 randUser=`< /dev/random tr -dc A-Za-z0-9 | head -c64`
 randPass=`< /dev/random tr -dc A-Za-z0-9 | head -c64`
 echo "rpcuser=$randUser" >> $config
 echo "rpcpassword=$randPass" >> $config
- 
+
 echo "########### Setting up chrony"
 cd ~
 git clone git://git.tuxfamily.org/gitroot/chrony/chrony.git
 cd ~/chrony
 ./configure
- 
+
 echo "########### Cleaning up unnecessary packages"
-apt-get -y remove git && apt-get -y remove gcc && apt-get -y remove unzip
+apt-get -y remove git && apt-get -y remove gcc && apt-get -y remove make && apt-get -y remove unzip
 apt-get -y autoremove
- 
+
 echo "########### All done! Thank you for supporting the Gridcoin network! Server will now start."
 su - gridcoin -c gridcoinresearchd
