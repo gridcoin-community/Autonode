@@ -20,16 +20,14 @@ wget https://mirrors.kernel.org/ubuntu/pool/main/m/miniupnpc/libminiupnpc8_1.6-3
 sudo dpkg -i libminiupnpc8_1.6-3ubuntu1.2_amd64.deb
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get -y install gridcoinresearchd
-sudo apt-get -y install unzip
+sudo apt-get -y install unzip ntp
 
 echo "-=-=-=- Creating Swap -=-=-=-"
 sudo su -c "dd if=/dev/zero of=/swapfile bs=1M count=2048 ; mkswap /swapfile ; swapon /swapfile"
 echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
 
-echo "-=-=-=- Setting up chrony -=-=-=-"
-sudo git clone git://git.tuxfamily.org/gitroot/chrony/chrony.git
-cd ~/chrony
-./configure
+echo "-=-=-=- Setting up NTP -=-=-=-"
+/etc/init.d/ntp start
 
 echo "-=-=-=- Create Gridcoin User -=-=-=-"
 sudo useradd -m gridcoin
@@ -43,6 +41,7 @@ sudo unzip snapshot.zip
 sudo chown -R gridcoin:gridcoin /home/gridcoin/.GridcoinResearch/*
 config="/home/gridcoin/.GridcoinResearch/gridcoinresearch.conf"
 sudo -u gridcoin touch $config
+echo "addnode=grcnode.a01.ca" | sudo tee -a $config # Montreal IPv6
 echo "addnode=grcnode.adf.lu" | sudo tee -a $config
 echo "addnode=grcnode.tahvok.com" | sudo tee -a $config
 echo "addnode=grcnode01.centralus.cloudapp.azure.com" | sudo tee -a $config
@@ -50,9 +49,11 @@ echo "addnode=grcnode02.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode03.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode04.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode05.westus2.cloudapp.azure.com" | sudo tee -a $config
+echo "addnode=grcnode2.a01.ca" | sudo tee -a $config # Montreal IPv4
 echo "addnode=gridcoin.asia" | sudo tee -a $config
 echo "addnode=gridcoin.crypto.fans" | sudo tee -a $config
-echo "addnode=gridcoin.is.dopeshit.net" | sudo tee -a $config
++echo "addnode=gridcoin.hopto.org" | sudo tee -a $config
+# echo "addnode=gridcoin.is.dopeshit.net" | sudo tee -a $config # Run only this node for round-robin IPv6 DNS entry
 echo "addnode=ils.gridcoin.co.il" | sudo tee -a $config
 echo "addnode=la.grcnode.co.uk" | sudo tee -a $config
 echo "addnode=london.grcnode.co.uk" | sudo tee -a $config
