@@ -92,8 +92,4 @@ sudo update-rc.d grcboot.sh defaults
 echo "-=-=-=- Add an alias -=-=-=-"
 echo "alias grc='sudo -u gridcoin gridcoinresearchd -datadir=/home/gridcoin/.GridcoinResearch/'" | sudo tee -a ~/.bashrc
 
-echo "-=-=-=- Cleaning up unnecessary packages -=-=-=-"
-cd ~
-sudo apt-get -y autoremove
-
 sudo reboot +5
