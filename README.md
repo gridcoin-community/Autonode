@@ -18,7 +18,7 @@ Notes
 -----
 
 This script installs:
-- chrony
+- ntp
 - git
 - make
 - gcc
@@ -44,6 +44,6 @@ This script:
 - Downloads snapshot instead of syncing from block 0 (edit script if you don't want it to do this)
 - Adds Google DNS to ensure package manager is reachable
 - Adds Spideroak as a host for snapshot download
-- Configures chrony (be sure to update timezone if you care about that sort of thing)
+- Configures ntp (be sure to update timezone if you care about that sort of thing)
 - Autostart when done (Ubuntu)
 - Autostart on boot (Debian)
