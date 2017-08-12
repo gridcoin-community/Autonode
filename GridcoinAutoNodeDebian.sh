@@ -1,3 +1,16 @@
+# To install:
+# 1) copy script
+# 2) cd ~
+# 3) vim script.sh
+# 4) press i to enter insert mode
+# 5) paste
+# 6) press Esc, then enter :x then press Enter to save and exit vim
+# 7) chmod +x script.sh
+# 8) ./script.sh
+# 9) monitor the output from the script, in case it throws an error
+# *) do not include your own node in the addnode config, it will cause the Neural Network to ban your node
+#=========================================================================================================
+
 #!/bin/bash
 echo "-=-=-=- The server will reboot when the script is complete -=-=-=-"
 echo "-=-=-=- Ensuring root directory -=-=-=-"
