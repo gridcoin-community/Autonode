@@ -1,7 +1,7 @@
 GridcoinAutoNode
 ===============
 
-A script to run (ideally just after starting up a new server/VPS) to automatically setup `gridcoinresearchd` under `gridcoin` user, and have it start on boot (Debian).
+A script to run (ideally just after starting up a new server/VPS) to automatically setup `gridcoinresearchd` under `gridcoin` user, and have it start on boot or immecidiately, depending on the distro.
 
 It has been tested on Ubuntu 14.04 and Debian 8 (Jessie), and is only intended for use on these distros.
 
@@ -9,7 +9,8 @@ One Liner - DO NOT run without reading code first!
 --------------------------------------------------
 Ubuntu 14.04
 
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNodeUbuntu14.sh ; sudo bash GridcoinAutoNodeUbuntu14.sh
+
 Debian  
 
     wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
