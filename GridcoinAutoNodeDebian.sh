@@ -14,7 +14,7 @@
 #!/bin/bash
 echo "-=-=-=- The server will reboot when the script is complete -=-=-=-"
 echo "-=-=-=- Ensuring root directory -=-=-=-"
-cd ~
+cd
 
 echo "-=-=-=- Adding Google DNS -=-=-=-"
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
@@ -31,7 +31,7 @@ echo 'deb http://ppa.launchpad.net/gridcoin/gridcoin-stable/ubuntu trusty main' 
 echo 'deb-src http://ppa.launchpad.net/gridcoin/gridcoin-stable/ubuntu trusty main' | sudo tee -a $sources
 wget https://mirrors.kernel.org/ubuntu/pool/main/m/miniupnpc/libminiupnpc8_1.6-3ubuntu1.2_amd64.deb
 sudo dpkg -i libminiupnpc8_1.6-3ubuntu1.2_amd64.deb
-sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get -y update&&sudo apt-get -y upgrade
 sudo apt-get -y install gridcoinresearchd
 sudo apt-get -y install unzip ntp
 
@@ -46,11 +46,10 @@ echo "-=-=-=- Create Gridcoin User -=-=-=-"
 sudo useradd -m gridcoin
 
 echo "-=-=-=- Creating config-=-=-=-"
-cd ~gridcoin
+cd /home/gridcoin
 sudo -u gridcoin mkdir .GridcoinResearch
 cd /home/gridcoin/.GridcoinResearch/
-sudo -u gridcoin wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/snapshot.zip
-sudo unzip snapshot.zip
+sudo -u gridcoin wget https://download.gridcoin.us/download/downloadstake/signed/snapshot.zip&&sudo unzip snapshot.zip&&sudo rm snapshot.zip
 sudo chown -R gridcoin:gridcoin /home/gridcoin/.GridcoinResearch/*
 config="/home/gridcoin/.GridcoinResearch/gridcoinresearch.conf"
 sudo -u gridcoin touch $config
