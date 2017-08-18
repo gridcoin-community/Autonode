@@ -20,9 +20,6 @@ echo "-=-=-=- Adding Google DNS -=-=-=-"
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
-echo "-=-=-=- Adding hosts -=-=-=-"
-echo "spideroak.com" >> /etc/hosts
-
 echo "-=-=-=- Updating Debian -=-=-=-"
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:gridcoin/gridcoin-stable
