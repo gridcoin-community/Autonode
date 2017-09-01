@@ -29,9 +29,14 @@ cd ~gridcoin
 sudo -u gridcoin mkdir .GridcoinResearch
 cd /home/gridcoin/.GridcoinResearch/
 
-echo "########### Downloading and extracting bootstrap.zip"
-sudo -u gridcoin wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/bootstrap.zip
-sudo unzip bootstrap.zip
+#echo "########### Downloading and extracting bootstrap.zip"
+#sudo -u gridcoin wget https://spideroak.com/share/N4YFAZLQOBSXEMDP/public/d%3A/Gridcoin.Tools/Share/bootstrap.zip
+#sudo unzip bootstrap.zip
+
+#Official snapshot
+sudo -u gridcoin wget https://download.gridcoin.us/download/downloadstake/signed/snapshot.zip
+sudo unzip snapshot.zip
+rm -rf snapshot.zip
 
 sudo chown -R gridcoin:gridcoin /home/gridcoin/.GridcoinResearch/*
 config="gridcoinresearch.conf"
