@@ -60,7 +60,6 @@ echo "addnode=grcnode02.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode03.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode04.eastus.cloudapp.azure.com" | sudo tee -a $config
 echo "addnode=grcnode05.westus2.cloudapp.azure.com" | sudo tee -a $config
-echo "addnode=gridcoin.asia" | sudo tee -a $config
 echo "addnode=gridcoin.crypto.fans" | sudo tee -a $config
 echo "addnode=ils.gridcoin.co.il" | sudo tee -a $config
 echo "addnode=la.grcnode.co.uk" | sudo tee -a $config
