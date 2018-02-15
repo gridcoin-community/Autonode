@@ -9,7 +9,7 @@ One Liner - DO NOT run without reading code first!
 --------------------------------------------------
 Ubuntu 14.04
 
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/GridcoinAutoNodeUbuntu14.sh ; sudo bash GridcoinAutoNodeUbuntu14.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNodeUbuntu14.sh
 
 Debian  
 
