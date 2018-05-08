@@ -11,6 +11,7 @@ apt-get install -y --no-install-recommends software-properties-common apt-transp
 dist=$(lsb_release -sc)
 case $dist in
     jessie|stretch|buster)
+            curl https://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo gpg --dearmor --output /etc/apt/trusted.gpg.d/bintray.gpg 
             add-apt-repository -y "deb https://dl.bintray.com/gridcoin/deb $dist stable"
             apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
             apt-get update && apt-get install -y --no-install-recommends gridcoinresearchd ;;
