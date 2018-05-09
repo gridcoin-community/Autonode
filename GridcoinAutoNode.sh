@@ -62,6 +62,7 @@ runuser -l gridcoin -c 'cd /home/gridcoin/.GridcoinResearch && unzip -o snapshot
 
 #Create an alias.
 echo "alias grc='sudo -u gridcoin gridcoinresearchd -datadir=/home/gridcoin/.GridcoinResearch/'" >> ~/.bashrc
+. ~/.bashrc
 
 # launch the daemon.
 runuser -l gridcoin -c "gridcoinresearchd -datadir=/home/gridcoin/.GridcoinResearch/ &"
