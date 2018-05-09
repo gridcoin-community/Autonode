@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # This script must be run with root privileges.
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
 
 # Update & install prerequisites.
 export DEBIAN_FRONTEND='noninteractive'
