@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# this script must be run with root privileges
+# This script must be run with root privileges.
 
-# update & install prerequisites
+# Update & install prerequisites.
 export DEBIAN_FRONTEND='noninteractive'
 apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 apt-get install -y --no-install-recommends software-properties-common apt-transport-https curl unzip
 
-# add appropriate repo, update packages & install gridcoin daemon
+# Add appropriate repo, update packages & install Gridcoin daemon.
 dist=$(lsb_release -sc)
 case $dist in
     jessie|stretch|buster)
@@ -22,15 +22,15 @@ case $dist in
             echo "DISTRO NOT SUPPORTED" && exit ;;
 esac
 
-# create gridcoin user & directories
+# Create gridcoin user & directories.
 useradd -m gridcoin
 runuser -l gridcoin -c 'mkdir /home/gridcoin/.GridcoinResearch'
 
-# generate random rpc user and password for conf
+# Generate random rpc user and password for conf.
 randUser=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 randPass=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-# create the gridcoinresearch.conf file
+# Create the gridcoinresearch.conf file.
 runuser -l gridcoin -c 'touch /home/gridcoin/.GridcoinResearch/gridcoinresearch.conf'
 runuser -l gridcoin -c "cat <<EOT >> /home/gridcoin/.GridcoinResearch/gridcoinresearch.conf
 server=1
@@ -56,13 +56,12 @@ addnode=node1.chick3nman.com
 addnode=quebec.gridcoin.co.il
 EOT"
 
-# pull official snapshot.
+# Pull the official snapshot.
 runuser -l gridcoin -c 'cd /home/gridcoin/.GridcoinResearch && if [ ! -f "snapshot.zip" ]; then curl -O https://download.gridcoin.us/download/downloadstake/signed/snapshot.zip; fi'
 runuser -l gridcoin -c 'cd /home/gridcoin/.GridcoinResearch && unzip -o snapshot.zip'
 
-#Create an alias.
+# Create an alias.
 echo "alias grc='sudo -u gridcoin gridcoinresearchd -datadir=/home/gridcoin/.GridcoinResearch/'" >> ~/.bashrc
-. ~/.bashrc
 
-# launch the daemon.
+# Launch the daemon.
 runuser -l gridcoin -c "gridcoinresearchd -datadir=/home/gridcoin/.GridcoinResearch/ &"
