@@ -1,51 +1,33 @@
 GridcoinAutoNode
 ===============
 
-A script to run (ideally just after starting up a new server/VPS) to automatically setup `gridcoinresearchd` under `gridcoin` user, and have it start on boot or immediately, depending on the distro.
+A script that automatically sets up a Gridcoin full node as a daemon (`gridcoinresearchd`) under a new `gridcoin` user.
 
-It has been tested on Ubuntu 14.04 and Debian 8 (Jessie), and is only intended for use on these distros.
+Tested on:
+
+- Ubuntu Trusty (14.04)
+- Ubuntu Xenial (16.04)
+- Debian Jessie (8)
+- Debian Stretch (9)
 
 One Liner - DO NOT run without reading code first!
 --------------------------------------------------
-Ubuntu 14.04
 
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNode.sh ; sudo bash GridcoinAutoNode.sh
-
-Debian  
-
-    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNodeDebian.sh ; sudo bash GridcoinAutoNodeDebian.sh
+    wget https://raw.githubusercontent.com/gridcoin-community/Autonode/master/GridcoinAutoNode.sh && sudo -E bash GridcoinAutoNode.sh && . .bashrc
 
 Notes
 -----
 
 This script installs:
-- ntp
-- git
-- make
-- gcc
 - unzip
-- apt-utils
 - software-properties-common
-- sudo
-- gridcoinresearchd (manually compiled from source)
-- libminiupnpc8 (Debian)
+- gridcoinresearchd (and dependencies)
 - curl
-- build-essential
-- libssl-dev
-- libdb-dev
-- libdb++-dev
-- libqrencode-dev
-- libcurl4-openssl-dev
-- libzip-dev
-- libzip2/libzip4
-- libboost1.55-all-dev
+- apt-transport-https
 
 This script:
-- Creates a 'gridcoin' user to run gridcoinresearchd under (safer than running client as root)
-- Downloads snapshot instead of syncing from block 0 (edit script if you don't want it to do this)
-- Adds Google DNS to ensure package manager is reachable
-- Adds Spideroak as a host for snapshot download
-- Configures ntp (be sure to update timezone with 'tzselect' or 'dpkg-reconfigure tzdata')
-- Autostart when done (Ubuntu)
-- Autostart on boot (Debian)
-- Get a free DNS entry from https://freedns.afraid.org/
+- Automatically figures out your distro and installs the daemon (`gridcoinresearchd`) for that specific distro.
+- Creates a `gridcoin` user to run `gridcoinresearchd` (safer than running client as root).
+- Downloads snapshot instead of syncing from block 0 (edit script if you don't want it to do this).
+- Creates a `grc` alias (for instance, you can run `grc getinfo`).
+- Starts daemon on script completion.
